@@ -7,3 +7,4 @@ git :submodule => 'add git://github.com/flogic/object_daddy.git vendor/plugins/o
 
 generate 'cucumber', '--spork'
 generate 'rspec'
+run 'spork --bootstrap'
