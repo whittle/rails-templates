@@ -1,10 +1,11 @@
+gem 'spork', :lib => false, :version => '0.5.7'
 gem 'cucumber', :version => '0.3.11'
 gem 'rspec-rails', :lib => false, :version => '1.2.7.1'
 gem 'rspec', :lib => false, :version => '1.2.8'
 gem 'webrat', :version => '0.4.4'
-
-git :submodule => 'add git://github.com/flogic/object_daddy.git vendor/plugins/object_daddy'
+plugin 'object_daddy', :git => 'git://github.com/flogic/object_daddy.git'
 
 generate 'cucumber', '--spork'
 generate 'rspec'
 run 'spork --bootstrap'
+run 'echo "--drb" >> spec/spec.opts'
