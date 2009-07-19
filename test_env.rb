@@ -1,10 +1,14 @@
-gem 'spork', :lib => false, :version => '0.5.7'
-gem 'cucumber', :version => '0.3.11'
-gem 'rspec-rails', :lib => false, :version => '1.2.7.1'
-gem 'rspec', :lib => false, :version => '1.2.8'
-gem 'webrat', :version => '0.4.4'
-plugin 'object_daddy', :git => 'git://github.com/flogic/object_daddy.git'
+test_gems = <<DATA
 
+config.gem 'rspec', :lib => false, :version => '>=1.2.8'
+config.gem 'rspec-rails', :lib => false, :version => '>=1.2.7.1'
+config.gem 'cucumber', :version => '>=0.3.11'
+config.gem 'webrat', :version => '>=0.4.4'
+config.gem 'spork', :lib => false, :version => '>=0.5.7'
+config.gem 'thoughtbot-factory_girl', :lib => 'factory_girl', :source => 'http://gems.github.com'
+DATA
+run "echo \"#{test_gems}\" >> config/environments/test.rb"
+rake 'gems:install', :env => 'test', :sudo => true
 generate 'cucumber', '--spork'
 generate 'rspec'
 run 'spork --bootstrap'
