@@ -44,3 +44,28 @@ namespace :db do
 end
   TASK
 end
+
+rakefile 'runcoderun.rake' do
+	<<-'TASK'
+desc 'Comprehensive (and very pretty) test output for runcoderun use.'
+task :runcoderun do
+	puts <<-EOS
+========
+Features
+========
+
+	EOS
+	ENV['CUCUMBER_OPTS'] = '--profile default'
+	verbose(false) { Rake::Task['features'].invoke }
+	puts <<-EOS
+
+=====
+Specs
+=====
+
+	EOS
+	ENV['SPEC_OPTS'] = '--format nested'
+	Rake::Task['spec'].invoke
+end
+	TASK
+end
