@@ -17,18 +17,20 @@ run("find . \\( -type d -empty \\) -and \\( -not -regex ./\\.git.* \\) -exec tou
 # git:rails:new_app
 git :init
 
-initializer '.gitignore', <<-CODE
-log/\\*.log
-log/\\*.pid
-db/\\*.db
-db/\\*.sqlite3
+git_ignore = <<-CODE
+log/*.log
+log/*.pid
+db/*.db
+db/*.sqlite3
 db/schema.rb
-tmp/\\*\\*/\\*
+tmp/**/*
 .DS_Store
 doc/api
 doc/app
 config/database.yml
 CODE
+
+run "echo \"#{git_ignore}\" >> .gitignore"
 
 run "cp config/database.yml config/database.yml.sample"
 
