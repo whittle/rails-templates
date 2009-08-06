@@ -28,6 +28,7 @@ tmp/**/*
 doc/api
 doc/app
 config/database.yml
+*.tmproj
 CODE
 
 run "echo \"#{git_ignore}\" >> .gitignore"
